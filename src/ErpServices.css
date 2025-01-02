@@ -1,0 +1,11 @@
+.industry-img{
+/* background-color: red; */
+border-radius: 50%;
+transform: all ;
+transition-duration: 0.4s;
+transition-timing-function: ease-in-out;
+
+}
+.industry-img:hover{
+ border-radius: 10%;
+}
