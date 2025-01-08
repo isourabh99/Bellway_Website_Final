@@ -1,49 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Career.css'
 import { Link } from 'react-router-dom';
 import CNavbar from '../../CNavbar';
 import Msg from '../../assets/msgBox.png'
 import Footer from '../../Footer';
-import {Helmet} from "react-helmet";
-import { useForm  } from "react-hook-form";
+import { Helmet } from "react-helmet";
+import { useForm } from "react-hook-form";
 import { Rings } from 'react-loader-spinner'
 import foundation11 from "../../assets/foundation11.png"
-import { useRef ,useState } from 'react'
+import { useRef, useState } from 'react'
+import axios from 'axios';
 const Career = () => {
-
-  
   const formRef = useRef(null);
 
   const scriptUrl = "https://script.google.com/macros/s/AKfycbzckZW1mHTSrr-aBpHebW5HWytdihVaslTJdXA6hmiGlcPTO_CRs3w6M-OI3eQhZvT6/exec";
+
   const [loading, setLoading] = useState(false)
-  const [submit,setsubmit]=useState(false);
 
-  const handleSubmit2 = async(e) =>{
-    e.preventDefault()
-  
-    setLoading(true)
-    // debugger
-    const x = new FormData(formRef.current);
-   await fetch(scriptUrl, {
-  
-    method: 'POST', 
-
-    body: x,
-
-}).then(res => {
-        console.log("SUCCESSFULLY SUBMITTED")
-    
-        setLoading(false)
-        setsubmit(true);
-    })
-    .catch(err => console.log(err))
-}
-  
-const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data =>{
-    console.log(data);
-
-  } 
+  const [submit, setsubmit] = useState(false);
 
   const images = [
     {
@@ -52,21 +26,21 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
       description: 'This is the description for image 1.',
       bottomText: 'Trainees, your dedication today shapes the leaders of tomorrow. Embrace every lesson, seek every opportunity, and let your passion drive you to excellence.'
     },
-    
-   
+
+
     {
       src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmVzc2lvbmFsfGVufDB8fDB8fHwwhttps://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmVzc2lvbmFsfGVufDB8fDB8fHww?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       title: 'Image Title 3',
       description: 'This is the description for image 3.',
       bottomText: 'Professionals, your expertise paves the way for innovation. Embrace new challenges, seize opportunities, and let your experience drive you to new heights.'
-    
+
     },
     {
       src: 'https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       title: 'Image Title 2',
       description: 'This is the description for image 2.',
       bottomText: 'Students, your potential is limitless. Embrace your learning journey, seize every opportunity, and let your curiosity guide you to a brilliant future.'
-  
+
     },
 
     {
@@ -74,12 +48,72 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
       title: 'Image Title 4',
       description: 'This is the description for image 4.',
       bottomText: 'Graduates, your journey begins now. Embrace every challenge, chase every opportunity, and let your passion guide you to greatness.'
-    
+
     },
   ];
+  const handleSubmit2 = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const formData = {
+        name: formRef.current.name.value,
+        phone_no: formRef.current.phone_no.value,
+        email: formRef.current.email.value,
+        service: formRef.current.service.value,
+        message: formRef.current.message.value,
+        resume_link: formRef.current.resume_link.value
+      }
+      console.log("formData", formData);
+      const response = await axios.post("https://admin.bellwayinfotech.com/api/admin/open-vacancies", formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      // console.log("postedData",response.data);
+      setsubmit(true)
+
+    } catch (error) {
+      if (error.response) {
+        // Server responded with an error
+        console.log("Error response:", error.response.data);
+        console.log("Error status:", error.response.status);
+      } else if (error.request) {
+        // No response from server
+        console.log("No response from server:", error.request);
+      } else {
+        // Error setting up the request
+        console.log("Request error:", error.message);
+      }
+    }
 
 
-  
+  }
+
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = data => {
+    console.log(data);
+
+  }
+
+
+  //   const [hirings, sethirings] = useState([])
+  //   const getHiring = async () => {
+  //     try {
+  //       const response = await fetch("https://admin.bellwayinfotech.com/api/admin/hirings")
+  //       if(!response.ok){
+  //        throw new Error("Hirings not found");
+
+  //       }
+  //       sethirings(await response.json());
+
+  //     } catch (error) {
+  //       console.log("Error fetching data",error);
+  //     }
+  //   }
+
+  // useEffect(()=>{
+  // getHiring()
+  // },[])
   return (
     <>
       <Helmet>
@@ -91,10 +125,10 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
       </Helmet>
       <CNavbar />
       <div className="mybg">
-        <div class="containerx mx-auto  bg-black p-4 mt-20">
-          <div class="flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 text-left mb-4 md:mb-0 md:p-8">
-              <h1 class="md:text-6xl text-3xl font-bold mb-4 text-white">
+        <div className="containerx mx-auto  bg-black p-4 mt-20">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 text-left mb-4 md:mb-0 md:p-8">
+              <h1 className="md:text-6xl text-3xl font-bold mb-4 text-white">
                 Career With Us...
               </h1>
               <p className="text-sm  my-6 text-left text-zinc-500 hover:text-zinc-50 transition-all duration-300">
@@ -110,28 +144,28 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
               <div className="mt-10">
                 <a
                   href="/contact"
-                  class="relative inline-flex items-center justify-center h-6 md:h-14 p-5 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-3 border-red-500 rounded-full shadow-md group"
+                  className="relative inline-flex items-center justify-center h-6 md:h-14 p-5 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-3 border-red-500 rounded-full shadow-md group"
                 >
-                  <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-red-500 group-hover:translate-x-0 ease">
+                  <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-red-500 group-hover:translate-x-0 ease">
                     <svg
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M14 5l7 7m0 0l-7 7m7-7H3"
                       ></path>
                     </svg>
                   </span>
-                  <span class="absolute flex items-center justify-center w-full h-full text-red-500 transition-all duration-300 transform group-hover:translate-x-full ease">
+                  <span className="absolute flex items-center justify-center w-full h-full text-red-500 transition-all duration-300 transform group-hover:translate-x-full ease">
                     Let's Talk
                   </span>
-                  <span class="relative invisible">Button Text</span>
+                  <span className="relative invisible">Button Text</span>
                 </a>
               </div>
             </div>
@@ -139,7 +173,7 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
               <img
                 src={foundation11}
                 alt=" Office Employee"
-                class="w-full  h-auto rounded-md"
+                className="w-full  h-auto rounded-md"
                 loading="lazy"
               />
             </div>
@@ -172,9 +206,8 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
             </div>
             <div className={` w-full md:w-1/2 p-4 mt-4`}>
               <div
-                className={`bg-white/90 ${
-                  submit ? "block" : "hidden"
-                } backdrop-blur-md   rounded-md md:py-2  text-black`}
+                className={`bg-white/90 ${submit ? "block" : "hidden"
+                  } backdrop-blur-md   rounded-md md:py-2  text-black`}
               >
                 <iframe
                   className="  md:m-auto"
@@ -206,7 +239,6 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
               </div>
               <form
                 className={`${submit ? "hidden" : "block"}`}
-                name="google-sheet"
                 ref={formRef}
                 onSubmit={handleSubmit2}
               >
@@ -224,27 +256,23 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
                       id="name"
                       name="name"
                       required
-                      {...register("name", { required: true })}
                     />
-                    {errors.name && <span>This field is required</span>}
                   </div>
 
                   <div className="w-full md:w-1/2 px-2">
                     <label
                       className="block text-sm font-medium mb-1"
-                      htmlFor="phone"
+                      htmlFor="phone_no"
                     >
                       Phone *
                     </label>
                     <input
                       className="w-full px-3 py-2 border rounded formC"
                       type="tel"
-                      id="phone"
-                      name="phone"
+                      id="phone_no"
+                      name="phone_no"
                       required
-                      {...register("phone", { required: true })}
                     />
-                    {errors.phone && <span>This field is required</span>}
                   </div>
                 </div>
 
@@ -261,10 +289,8 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
                       type="email"
                       id="email"
                       name="email"
-                      {...register("email", { required: true })}
                       required
                     />
-                    {errors.email && <span>This field is required</span>}
                   </div>
                   <div className="w-full md:w-1/2 px-2">
                     <label
@@ -277,15 +303,15 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
                       className="w-full h-10 px-2  border rounded formC"
                       id="service"
                       name="service"
-                      {...register("service", { required: true })}
                       required
                     >
                       <option value="">Select a service</option>
-                      <option value="consultation">Consultation</option>
-                      <option value="support">Support</option>
-                      <option value="other">Other</option>
+                      <option value="Developer">Developer</option>
+                      <option value="Tester">Tester</option>
+                      <option value="Manager">Manager</option>
+                      <option value="Designer">Designer</option>
+                      <option value="Other">Other</option>
                     </select>
-                    {errors.service && <span>This field is required</span>}
                   </div>
                 </div>
                 <div className="px-2">
@@ -300,27 +326,23 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
                     id="message"
                     name="message"
                     rows="4"
-                    {...register("message", { required: true })}
                     required
                   ></textarea>
-                  {errors.message && <span>This field is required</span>}
                 </div>
                 <div className="px-2">
                   <label
                     className="block text-sm font-medium mb-1"
-                    htmlFor="resume"
+                    htmlFor="resume_link"
                   >
                     Resume Link*
                   </label>
                   <input
                     className="w-full px-3 py-2 border rounded formC"
                     type="text"
-                    id="resume"
-                    name="resume"
-                    {...register("resume", { required: true })}
+                    id="resume_link"
+                    name="resume_link"
                     required
                   />
-                  {errors.resume && <span>This field is required</span>}
                 </div>
                 <div className="flex items-center justify-center mt-10">
                   <button
@@ -350,25 +372,7 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
           <h2 className="md:text-4xl text-3xl md:mx-0 font-bold  text-center mt-6 hover:text-red-600">
             Explore Opportunities
           </h2>
-          {/* <div className="sm:flex flex-wrap justify-center gap-5 w-full md:w-3/4 lg:w-2/3 xl:w-full mx-auto py-10">
-        {testimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className="carousel-item flex-1 my-9 sm:my-0 bg-cover bg-center h-64 w-full sm:w-1/2 md:w-1/4 rounded-lg relative overflow-hidden"
-            style={{ backgroundImage: `url(${testimonial.image})`}}
-          >
-            <img
-              src={testimonial.image}
-              alt={`Profile of ${testimonial.name}`}
-              className="absolute inset-0 w-full  h-full object-cover"
-            />
-            <div className="carousel-content absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent text-white flex flex-col items-center justify-end text-center">
-              <h2 className="text-lg font-semibold">{testimonial.name}</h2>
-              <p className="text-sm italic">"{testimonial.review}"</p>
-            </div>
-          </div>
-        ))}
-      </div> */}
+
 
           <div className="container mx-auto  p-4 mt-12">
             <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
