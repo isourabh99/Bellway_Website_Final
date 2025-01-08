@@ -293,7 +293,7 @@ const AboutUs = () => {
           </div>
         </div>
 
-        <Solutions />
+        {/* <Solutions /> */}
 
         <div className="min-h-screen flex flex-col md:flex-row mt-44">
           <div className="w-full md:w-full bg-black text-white p-8 flex flex-col justify-center items-center">

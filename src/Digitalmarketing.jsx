@@ -72,28 +72,27 @@ const data = [
 
 const TabHeader = ({ data, click, activeId }) => {
   return (
-      <ul className="tabs-header   ">
-          {data.map((item, index) => (
-              
-                  <li key={index} className={activeId === index ? 'active' : ''}>
-                  <a onClick={() => click(index)} className='  '><span className=''>{item.name}</span></a>
-              </li> 
-          
-             
-          ))}
-      </ul>
+    <ul className="tabs-header mt-4 md:mt-20 md:mb-2 ">
+      {data.map((item, index) => (
+
+        <li key={index} className={activeId === index ? 'active' : ''}>
+          <a onClick={() => click(index)} className='  '><span className=''>{item.name}</span></a>
+        </li>
+      ))}
+    </ul>
   );
 };
 
 const TabContent = ({ data, activeId }) => {
   return (
-      <div className="tabs-content  mx-3  rounded-md h-[15rem]">
-          {data.map((item, index) => (
-              <div key={index} className={`tabs-textItem ${activeId === index ? 'show' : ' '}`}>
-                  <p>{item.text}</p>
-              </div>
-          ))}
-      </div>
+    <div className="tabs-content  mx-3 my-4 p-4  rounded-md h-[15rem]">
+      {data.map((item, index) => (
+        <div key={index} className={`tabs-textItem ${activeId === index ? 'show' : ' '}`}>
+          <p className='tracking-wider
+'>{item.text}</p>
+        </div>
+      ))}
+    </div>
   );
 };
 

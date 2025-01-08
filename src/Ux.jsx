@@ -63,12 +63,11 @@ const solutionsData = [
 
 const TabHeader = ({ data, click, activeId }) => {
   return (
-    <ul className="tabs-header   ">
+    <ul className="tabs-header mt-4 md:mt-20 md:mb-2 ">
       {data.map((item, index) => (
-        <li key={index} className={activeId === index ? "active" : ""}>
-          <a onClick={() => click(index)} className="  ">
-            <span className="">{item.name}</span>
-          </a>
+
+        <li key={index} className={activeId === index ? 'active' : ''}>
+          <a onClick={() => click(index)} className='  '><span className=''>{item.name}</span></a>
         </li>
       ))}
     </ul>
@@ -77,13 +76,11 @@ const TabHeader = ({ data, click, activeId }) => {
 
 const TabContent = ({ data, activeId }) => {
   return (
-    <div className="tabs-content  mx-3  rounded-md h-[15rem]">
+    <div className="tabs-content  mx-3 my-4 p-4  rounded-md h-[15rem]">
       {data.map((item, index) => (
-        <div
-          key={index}
-          className={`tabs-textItem ${activeId === index ? "show" : " "}`}
-        >
-          <p>{item.text}</p>
+        <div key={index} className={`tabs-textItem ${activeId === index ? 'show' : ' '}`}>
+          <p className='tracking-wider
+'>{item.text}</p>
         </div>
       ))}
     </div>
@@ -337,52 +334,6 @@ const Ux = () => {
         <HomeSlider />
       </div>
 
-      {/* <div className='se' style={{ marginTop: "100px" }} >
-        <h1 className='tag' >We Have Worked For</h1>
-      </div> */}
-
-      {/* <div class="container8" style={{ marginTop: "60px" }}>
-
-        <div class="card"><img src={image9} alt="Image 1" /></div>
-        <div class="card"><img src={image10} alt="Image 2" /></div>
-        <div class="card"><img src={image11} alt="Image 3" /></div>
-        <div class="card"><img src={image12} alt="Image 4" /></div>
-        <div class="card"><img src={image13} alt="Image 5" /></div>
-        <div class="card"><img src={image14} alt="Image 6" /></div>
-        <div class="card"><img src={image15} alt="Image 7" /></div>
-        <div class="card"><img src={image16} alt="Image 8" /></div>
-        <div class="card"><img src={image17} alt="Image 8" /></div>
-        <div class="card"><img src={image18} alt="Image 8" /></div>
-        <div class="card"><img src={image19} alt="Image 8" /></div>
-        <div class="card"><img src={image20} alt="Image 8" /></div>
-        <div class="card"><img src={image21} alt="Image 8" /></div>
-        <div class="card"><img src={image22} alt="Image 8" /></div>
-      </div> */}
-
-      <div className="mt-16">{/* <HomeTestimonials /> */}</div>
-      {/* <div className="w-full overflow-hidden mt-8">
-        <div className="w-full text-center">
-          <h1 className="appreciation text-4xl font-bold mb-8">Stories From Our Clients</h1>
-        </div>
-        <div className="mt-10 px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8 lg:py-10 bg-gray-50 shadow-md rounded-md p-4 text-center transition duration-300 hover:bg-gray-200 hover:shadow-2xl">
-          <Slider {...settings}>
-            {boxes.map((box, index) => (
-              <div key={index} className="px-2 sm:px-4">
-                <div className="bg-white rounded-md p-4 sm:p-6 md:p-8 text-center transition duration-300 hover:bg-gray-100 shadow-md hover:shadow-lg relative">
-                  <div className="client-image mb-4">
-                    <img src={box.image} alt={`Client ${index + 1}`} className="w-16 h-16 rounded-full mx-auto" />
-                  </div>
-                  <div className="text-gray-700 text-lg mb-4">{box.text}</div>
-                  <div className="absolute bottom-2 left-2 text-left">
-                    <p className="text-gray-800 font-bold mb-1">{box.name}</p>
-                    <p className="text-gray-600 text-sm">{box.position}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Slider>
-        </div>
-      </div> */}
 
       <div style={{ marginTop: "90px" }}>
         <FaqPage2></FaqPage2>

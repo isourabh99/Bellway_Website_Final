@@ -1,70 +1,42 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import MobileCard from './MobileCard';
-
-// import image9 from './assets/image9.png'
-// import image10 from './assets/image10.png'
-// import image11 from './assets/image11.png'
-// import image12 from './assets/image12.png'
-// import image13 from './assets/image13.png'
-// import image14 from './assets/image14.png'
-// import image15 from './assets/image15.png'
-// import image16 from './assets/image16.png'
-// import image17 from './assets/image17.png'
-// import image18 from './assets/image18.png'
-// import image19 from './assets/image20.png'
-// import image20 from './assets/image21.png'
-// import image21 from './assets/image22.png'
-// import image22 from './assets/image23.png'
-// import image23 from './assets/image24.png'
-// import image24 from './assets/image25.png'
-
-import PopupForm from './PopupForm';
-
 import CNavbar from './CNavbar'
 import './Form1.css'
-import image4 from './assets/image6.png'
-
 import Footer from './Footer'
-// import FaqPage1 from './FaqPage1';
-
-import Slider from 'react-slick';
-// import Client1 from './assets/face1.jpeg'
-// import Client2 from './assets/face2.jpeg';
-// import Client3 from './assets/face3.jpeg';
-// import Client4 from './assets/face4.jpeg';
-import {Helmet} from "react-helmet";
-import Solutions from './Solutions';
-import HomeFaq from './HomeFaq'
-import HomeTestimonials from './HomeTestimonials';
+import { Helmet } from "react-helmet";
 import HomeSlider from './HomeSlider';
 import FaqPage1 from "./FaqPage1"
-
+import MADScard from "./Components/MADScard";
+import { Link } from 'react-router-dom'
+import { FiArrowUpRight } from "react-icons/fi";
+import { FaApple } from "react-icons/fa";
+import { IoHardwareChip } from "react-icons/io5";
+import { IoIosPhonePortrait } from "react-icons/io";
+import { FaLaptopCode } from "react-icons/fa";
+import { FaSteamSquare } from "react-icons/fa";
 const TabHeader = ({ data, click, activeId }) => {
   return (
-      <ul className="tabs-header   ">
-          {data.map((item, index) => (
-              
-                  <li key={index} className={activeId === index ? 'active' : ''}>
-                  <a onClick={() => click(index)} className='  '><span className=''>{item.name}</span></a>
-              </li> 
-          
-             
-          ))}
-      </ul>
+    <ul className="tabs-header mt-4 md:mt-20 md:mb-2 ">
+      {data.map((item, index) => (
+
+        <li key={index} className={activeId === index ? 'active' : ''}>
+          <a onClick={() => click(index)} className='  '><span className=''>{item.name}</span></a>
+        </li>
+      ))}
+    </ul>
   );
 };
 
 const TabContent = ({ data, activeId }) => {
   return (
-      <div className="tabs-content  mx-3   rounded-md h-[15rem]">
-          {data.map((item, index) => (
-              <div key={index} className={`tabs-textItem ${activeId === index ? 'show' : ' '}`}>
-                  <p>{item.text}</p>
-              </div>
-          ))}
-      </div>
+    <div className="tabs-content  mx-3 my-4 p-4  rounded-md h-[15rem]">
+      {data.map((item, index) => (
+        <div key={index} className={`tabs-textItem ${activeId === index ? 'show' : ' '}`}>
+          <p className='tracking-wider
+'>{item.text}</p>
+        </div>
+      ))}
+    </div>
   );
 };
 
@@ -72,9 +44,9 @@ const TabContent = ({ data, activeId }) => {
 const Web1 = () => {
   const [activeTab, setActiveTab] = useState(0);
 
-    const changeTabOnClick = (index) => {
-        setActiveTab(index);
-    };
+  const changeTabOnClick = (index) => {
+    setActiveTab(index);
+  };
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   const togglePopup = () => {
@@ -129,49 +101,29 @@ const Web1 = () => {
     { id: 8, image: 'https://i.pinimg.com/736x/7f/63/64/7f63644d631600cb5c3fcec87332a5a4.jpg', name: 'Tech 8', title: 'Laravel' }
   ];
 
-  // const images = [
-  //   image9,
-  //   image10,
-  //   image11,
-  //   image12,
-  //   image13,
-  //   image14,
-  //   image15,
-  //   image16,
-  //   image17,
-  //   image18,
-  //   image19,
-  //   image20,
-  //   image21,
-  //   image22,
-  //   image23,
-  //   image24,
-  //   "https://www.appslure.com/wp-content/uploads/2021/10/04-300x120-1.webp",
-  //   "https://www.appslure.com/wp-content/uploads/2021/10/03-min-300x120-1.webp",
 
-  // ];
 
   const data = [
     {
-        name: 'Laravel',
-        text: "Laravel is a popular PHP framework designed for building modern web applications. It follows the MVC (Model-View-Controller) architectural pattern, promoting organized and maintainable code. Laravel offers a rich set of features, including an elegant ORM (Eloquent), a powerful templating engine (Blade), and a robust routing system. Its built-in tools for tasks like authentication, caching, and session management simplify common web development tasks. Laravel's extensive documentation and vibrant community make it a user-friendly and powerful framework for PHP developers."
+      name: 'Laravel',
+      text: "Laravel is a popular PHP framework designed for building modern web applications. It follows the MVC (Model-View-Controller) architectural pattern, promoting organized and maintainable code. Laravel offers a rich set of features, including an elegant ORM (Eloquent), a powerful templating engine (Blade), and a robust routing system. Its built-in tools for tasks like authentication, caching, and session management simplify common web development tasks. Laravel's extensive documentation and vibrant community make it a user-friendly and powerful framework for PHP developers."
     },
     {
-        name: 'React',
-        text: "React is a popular JavaScript library developed by Facebook for building user interfaces, particularly single-page applications. It allows developers to create reusable UI components, making code more maintainable and scalable. React uses a virtual DOM to efficiently update and render components, enhancing performance. Its declarative approach makes it easy to understand and debug. The extensive ecosystem, including tools like Redux for state management and Next.js for server-side rendering, makes React a powerful choice for modern web development."
+      name: 'React',
+      text: "React is a popular JavaScript library developed by Facebook for building user interfaces, particularly single-page applications. It allows developers to create reusable UI components, making code more maintainable and scalable. React uses a virtual DOM to efficiently update and render components, enhancing performance. Its declarative approach makes it easy to understand and debug. The extensive ecosystem, including tools like Redux for state management and Next.js for server-side rendering, makes React a powerful choice for modern web development."
     },
     {
-        name: 'Django',
-        text: "Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It follows the 'batteries-included' philosophy, providing a wide range of built-in features such as authentication, database ORM, and an admin panel. Django s robust security features, including protection against SQL injection, cross-site scripting, and cross-site request forgery, make it a preferred choice for building secure web applications. Its emphasis on reusability and the DRY (Don't Repeat Yourself) principle streamlines development, making Django ideal for both small and large-scale projects."
+      name: 'Django',
+      text: "Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It follows the 'batteries-included' philosophy, providing a wide range of built-in features such as authentication, database ORM, and an admin panel. Django s robust security features, including protection against SQL injection, cross-site scripting, and cross-site request forgery, make it a preferred choice for building secure web applications. Its emphasis on reusability and the DRY (Don't Repeat Yourself) principle streamlines development, making Django ideal for both small and large-scale projects."
     },
-  {
-    name: 'Angular',
-        text: "Angular is a comprehensive front-end framework developed by Google for building dynamic web applications. It uses TypeScript, a superset of JavaScript, which adds static typing and other features to enhance development. Angular offers a robust set of tools for building complex applications, including two-way data binding, dependency injection, and a modular architecture. Its powerful CLI simplifies project setup and development processes. Angular's strong community support and continuous updates make it a reliable framework for enterprise-level applications."
-  },
-  {
-    name: 'Vue.js',
-        text: 'Vue.js is a progressive JavaScript framework for building user interfaces. It is designed to be incrementally adoptable, meaning you can use as much or as little of the framework as you need. Vue.js is known for its simplicity and ease of integration with existing projects. It offers a reactive data binding system and a component-based architecture, making it easy to build complex applications. The official ecosystem, including tools like Vuex for state management and Vue Router for navigation, enhances its capabilities, making Vue.js a flexible and versatile choice for web development.'
-  }
+    {
+      name: 'Angular',
+      text: "Angular is a comprehensive front-end framework developed by Google for building dynamic web applications. It uses TypeScript, a superset of JavaScript, which adds static typing and other features to enhance development. Angular offers a robust set of tools for building complex applications, including two-way data binding, dependency injection, and a modular architecture. Its powerful CLI simplifies project setup and development processes. Angular's strong community support and continuous updates make it a reliable framework for enterprise-level applications."
+    },
+    {
+      name: 'Vue.js',
+      text: 'Vue.js is a progressive JavaScript framework for building user interfaces. It is designed to be incrementally adoptable, meaning you can use as much or as little of the framework as you need. Vue.js is known for its simplicity and ease of integration with existing projects. It offers a reactive data binding system and a component-based architecture, making it easy to build complex applications. The official ecosystem, including tools like Vuex for state management and Vue Router for navigation, enhances its capabilities, making Vue.js a flexible and versatile choice for web development.'
+    }
   ];
 
 
@@ -225,14 +177,12 @@ const Web1 = () => {
               </span>
               <span class="relative invisible">Contact Us</span>
             </a>
-            {/* <h3 class="sm:text-2xl text-white">
-              <Link to="/" class="text-red-600 hover:underline">Home</Link> /Web Application Development
-            </h3> */}
+
           </div>
           <div class="md:w-1/2 h-full mb-9 text-right flex justify-center">
             <img
               loading="lazy"
-              src="/images/Web-development.png"
+              src="/images/Development-amico.png"
               alt="About Image"
               class="w-full md:w-[55%] h-auto hover:scale-95 transition-all duration-500 ease-in-out"
             />
@@ -240,96 +190,91 @@ const Web1 = () => {
         </div>
       </div>
 
-      <div className="se">
-        <h1 className="tag4 text-3xl mx-3 md:mx-0 md:text-5xl font-bold">
-          Web App Development Services
-        </h1>
+      <div className="containerx px-4  py-10 md:py-20 flex flex-col md:flex-row justify-center bg-zinc-100  items-center  rounded overflow-hidden mb-10">
+        <div className="md:w-1/2  ">
+          <h1 className="text-zinc-900 text-3xl md:text-5xl leading-none mb-20">Web Application Development Services</h1>
+          <p className="text-zinc-900 text-lg mt-4">A well-designed website can significantly boost your traffic and conversions. In the digital age, customers are constantly seeking top-notch products and services. If you own a website offering these, but haven't been seeing the expected number of customers or conversions, your website design might be the issue.It's time to carefully evaluate your website and make bold changes to its design. An attractive, user-friendly website can drive exponential growth for your business. At Bellway Infotech, we specialize in creating user-friendly, quick-responsive websites and web applications tailored to your business needs.
+          </p>
+        </div>
+        <div className="md:w-1/2 ">
+          <img src="/images/image46.png" alt="" className="md:w-[80%] mx-auto" />
+        </div>
       </div>
 
+      <div className="flex gap-10 flex-col md:flex-row items-center w-full px-4 my-20" >
+
+        <div className="relative bg-zinc-100  md:w-80 w-full h-80 rounded-[70px] overflow-hidden">
+          <img src="/images/freepik__candid-image-photography-natural-textures-highly-r__76168.jpeg" className="w-full h-full  object-cover object-bottom" alt="" />
+          <Link to={"/contact"} className="absolute  top-0 right-10 w-fit mt-10 bg-white text-black px-2 py-2 rounded-full flex items-center justify-center gap-2 hover:scale-125 transition-all ease-linear duration-400"><FiArrowUpRight size={25} /></Link>
+        </div>
+        <MADScard desc={"We deliver static and dynamic websites tailored to your business needs. As a leading web and mobile app development company, we offer custom web solutions, including PHP development and CMS websites for easy content management."} />
+        <MADScard desc={"Our team of app designers and developers is dedicated to providing top-quality solutions with a focus on customer satisfaction. With a broad range of technical expertise, we deliver high-quality web application development solutions that help your business thrive."}
+        />
+        <MADScard desc={"If you need expert assistance with web design, web applications, or mobile app development, feel free to contact Bellway Infotech. We're committed to delivering excellent results for your business."}
+        />
+      </div>
+
+      <div className="flex gap-10 flex-col md:flex-row items-center   w-full px-4  my-20 " >
+
+        <div className="md:w-1/2">
+          <h1 className=' text-black text-6xl mb-10'>Offerings at Bellway Infotech</h1>
+          <ul className=' list-disc px-4   md:text-xl '>
+            <li>Unparalleled Website Designing Services</li>
+            <li>Use of Latest and Sophisticated Technologies
+            </li>
+            <li>Consolidated Website Design and Development Packages</li>
+            <li>Cost-Effective Solutions for Emerging Companies</li>
+            <li>Custom and Highly Personalized Website Solutions</li>
+            <li>Round-the-Clock Support via Email, Chat, and Phone</li>
+          </ul>
+
+        </div>
+        <div className="  md:w-1/2">
+          <img src="/images/image45.png" alt="" />
+
+        </div>
+
+      </div>
+
+      <div className="nativeDev relative px-4   flex w-full gap-4 flex-col md:flex-row pb-20">
+        <div className="left bg-zinc-800 md:w-1/2 p-4 md:p-20 rounded-3xl" >
+          <Link to={"/contact"} className="w-fit mt-10 bg-white p-4 rounded-full flex items-center justify-center gap-2 hover:scale-125 transition-all ease-linear duration-400"><FiArrowUpRight size={25} /></Link>
+          <p className="text-white text-3xl md:text-5xl leading-none my-10 ">Web Development & Designing</p>
+
+          <p className='text-zinc-400 '>Innovation has come a long way in the past decade, and today, a well-designed website requires a dedicated team to bring it to life. In this article, we'll highlight two crucial roles within that team: web designers and engineers. While they often collaborate, developers and designers handle distinct responsibilities to ensure a website’s success. While it’s possible for one individual to take on both roles, these are generally two separate skill sets.</p>
+        </div>
+        <div className="right relative md:w-1/2 rounded-3xl flex flex-col gap-2">
+          <div className=" bg-fuchsia-200 w-full p-4 md:px-20 py-2 md:h-1/2 rounded-3xl" >
+            <Link to={"/contact"} className="absolute top-0 right-2 w-fit mt-10 bg-black text-white p-2 rounded-full flex items-center justify-center gap-2 hover:scale-125 transition-all ease-linear duration-400"><FiArrowUpRight size={25} /></Link>
+            <p className="text-black text-3xl md:text-3xl leading-none my-4 ">Planning Your Digital Success</p>
+
+            <p className='text-zinc-900 '>At Bellway Infotech, we don't just build websites — we plan your digital success. Our expert team works closely with you to understand your vision and create websites that deliver true value.</p>
+          </div>
+          <div className='relative bg-lime-300 w-full p-4 md:px-20 py-2 md:h-1/2 rounded-3xl'>
+            <Link to={"/contact"} className="absolute top-0 right-2 w-fit mt-10 bg-black text-white p-2 rounded-full flex items-center justify-center gap-2 hover:scale-125 transition-all ease-linear duration-400"><FiArrowUpRight size={25} /></Link>
+            <p className="text-black text-3xl md:text-3xl leading-none my-2 ">Transform Your Ideas into Dynamic Websites – Get in Touch!</p>
+
+            <p className='text-black'>Get in touch with us to leverage our website design, E-Commerce website development, and web application development services to stay ahead of the competition in your industry. Partner with our web developers to transform your concepts into dynamic, value-driven websites.</p>
+        
+
+          </div>
+        </div>
+      </div>
       {/* <MobileCard/> */}
       <div className="tabs-body flex justify-center items-center flex-col">
         <TabHeader data={data} click={changeTabOnClick} activeId={activeTab} />
         <TabContent data={data} activeId={activeTab} />
       </div>
 
-      {/* <div className="min-h-screen flex flex-col items-center justify-center  p-8 ">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4 text-black">Our Technologies</h1>
-          <p className="text-2xl mt-9">Being a Mobile App development and web development company Bellway Infotech consistently serving into latest Technologies
-            for providing nothing less than best to our Clients and Prospects.</p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-36 mt-12 ">
-          {technologies.map(tech => (
-
-            <div key={tech.id} className="flex justify-center items-center">
-
-              <img
-                src={tech.image}
-                alt={tech.name}
-
-                className="w-48 h-48 md:w-32 md:h-32 rotate-on-hover"
-
-              />
 
 
-            </div>
-
-          ))}
-        </div>
-      </div> */}
-
-      <Solutions />
+      {/* <Solutions /> */}
       <div className="mt-24">
         <HomeSlider />
       </div>
 
-      {/* <div className='se' style={{ marginTop: "100px" }} >
-        <h1 className='tag text-4xl' >We Have Worked For</h1>
-      </div>
 
-      <div class="container8" style={{ marginTop: "60px" }}>
 
-        <div class="card"><img src={image9} alt="Image 1" /></div>
-        <div class="card"><img src={image10} alt="Image 2" /></div>
-        <div class="card"><img src={image15} alt="Image 3" /></div>
-        <div class="card"><img src={image12} alt="Image 4" /></div>
-        <div class="card"><img src={image13} alt="Image 5" /></div>
-        <div class="card"><img src={image14} alt="Image 6" /></div>
-        <div class="card"><img src={image11} alt="Image 7" /></div>
-        <div class="card"><img src={image16} alt="Image 8" /></div>
-        <div class="card"><img src={image17} alt="Image 8" /></div>
-        <div class="card"><img src={image18} alt="Image 8" /></div>
-        <div class="card"><img src={image19} alt="Image 8" /></div>
-        <div class="card"><img src={image20} alt="Image 8" /></div>
-        <div class="card"><img src={image21} alt="Image 8" /></div>
-        <div class="card"><img src={image22} alt="Image 8" /></div>
-      </div> */}
-
-      {/* <div className="w-full overflow-hidden mt-8">
-        <div className="w-full text-center">
-          <h1 className="appreciation text-4xl font-bold mb-8">Stories From Our Clients</h1>
-        </div>
-        <div className="mt-10 px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8 lg:py-10 bg-gray-50 shadow-md rounded-md p-4 text-center transition duration-300 hover:bg-gray-200 hover:shadow-2xl">
-          <Slider {...settings}>
-            {boxes.map((box, index) => (
-              <div key={index} className="px-2 sm:px-4">
-                <div className="bg-white rounded-md p-4 sm:p-6 md:p-8 text-center transition duration-300 hover:bg-gray-100 shadow-md hover:shadow-lg relative">
-                  <div className="client-image mb-4">
-                    <img src={box.image} alt={`Client ${index + 1}`} className="w-16 h-16 rounded-full mx-auto" />
-                  </div>
-                  <div className="text-gray-700 text-lg mb-4">{box.text}</div>
-                  <div className="absolute bottom-2 left-2 text-left">
-                    <p className="text-gray-800 font-bold mb-1">{box.name}</p>
-                    <p className="text-gray-600 text-sm">{box.position}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Slider>
-        </div>
-      </div> */}
-
-      <div className="mt-16">{/* <HomeTestimonials/> */}</div>
 
       <div style={{ marginTop: "90px" }}>
         <FaqPage1></FaqPage1>

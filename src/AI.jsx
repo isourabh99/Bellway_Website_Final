@@ -182,7 +182,6 @@ const AI = () => {
               src="/images/ml.png"
               alt="Machine Learning"
               className="w-full  md:w-1/3 m-auto "
-              style={{ boxShadow: "0 0 20px rgba(0, 0, 0, 0.6)" }}
             />
             <div className="md:ml-10 mt-4 md:mt-0 my-4 text-left  ">
               <h2 className="md:text-4xl text-3xl font-semibold">
@@ -394,7 +393,7 @@ const AI = () => {
         </div>
       </div>
 
-      <Solutions />
+      {/* <Solutions /> */}
 
       <br />
       <br />

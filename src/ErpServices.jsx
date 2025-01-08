@@ -90,7 +90,7 @@ const ErpServices = () => {
                 <h2 className="md:text-3xl text-2xl font-semibold">
                   Customer Relationship Management (CRM)
                 </h2>
-                <p className="mt-9 text-lg">
+                <p className="mt-9 text-lg text-left">
                   Customer Relationship Management (CRM) is a strategic approach
                   that focuses on managing and optimizing a company's
                   interactions with current and potential customers. By using
@@ -119,7 +119,7 @@ const ErpServices = () => {
                 <h2 className="md:text-4xl text-xl font-semibold">
                   Human Resources Management (HRM)
                 </h2>
-                <p className="mt-9 text-lg ">
+                <p className="mt-9 text-lg text-left ">
                   Human Resource Management (HRM) plays a vital role in the
                   organization by focusing on recruiting, managing, and
                   nurturing the workforce. The effectiveness of HRM lies in
@@ -148,7 +148,7 @@ const ErpServices = () => {
                 <h2 className="text-3xl font-semibold text-center">
                   Supply Chain Management (SCM)
                 </h2>
-                <p className="mt-9 text-lg  md:px-0 pb-3 md:pb-0">
+                <p className="mt-9 text-lg  md:px-0 pb-3 md:pb-0 text-left">
                   Supply Chain Management (SCM) plays a crucial role in
                   supervising and enhancing the movement of goods, services, and
                   information from their raw form to reaching the end consumer.
@@ -177,7 +177,7 @@ const ErpServices = () => {
                   {" "}
                   Mobile ERP solutions
                 </h2>
-                <p className="mt-9 text-lg ">
+                <p className="mt-9 text-lg text-left">
                   Mobile ERP solutions are transforming the way businesses
                   manage their operations by providing real-time access to
                   enterprise resource planning (ERP) systems from mobile
@@ -207,7 +207,7 @@ const ErpServices = () => {
                 <h2 className="text-3xl text-center font-semibold mt-3">
                   Financial Management
                 </h2>
-                <p className="mt-9 text-lg  md:px-0 pb-2 md:pb-0">
+                <p className="mt-9 text-lg  md:px-0 pb-2 md:pb-0 text-left">
                   Financial Management plays a vital role in overseeing
                   financial activities by planning, organizing, directing, and
                   controlling to reach organizational objectives. It covers
@@ -447,7 +447,7 @@ const ErpServices = () => {
             </div>
           </div>
         </div>
-        <Solutions />
+        {/* <Solutions /> */}
 
         <br />
         <br />

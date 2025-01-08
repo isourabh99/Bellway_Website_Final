@@ -410,7 +410,7 @@ function ContactForm() {
                     Contact number *
                   </label>
                   <div
-                    className="appearance-none block w-full flex  bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                    className="appearance-none  w-full flex  bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
                     id="contact-number"
                     type="text" // Changed type to text for custom validation
                     value={ContactNumber}

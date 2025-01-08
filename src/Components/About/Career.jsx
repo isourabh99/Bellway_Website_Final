@@ -161,9 +161,9 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
           <div className="formC bg-opacity-75 p-8 rounded-lg shadow-md w-full max-w-6xl flex flex-wrap relative z-10 text-white ">
             <div className="w-full md:w-1/2 p-4 mt-20 md:mt-60">
               <h6 className="text-xl mt-20 mb-4">
-                Hiring for digital marketers?
+                Hiring for Business development executive?
               </h6>
-              <p className="mb-6">Having 3+ Years Experience !!</p>
+              <p className="mb-6">Having 0 to 1 Years Experience !!</p>
               <div className="mt-6">
                 <h3 className="text-5xl font-semibold mt-20">
                   <i>Send Your Work Summary</i>

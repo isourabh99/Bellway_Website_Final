@@ -261,12 +261,12 @@ const Wordpress = () => {
       </section>
 
       <section className="bg-gray-100 text-black flex justify-center py-20 w-full items-center">
-        <div className="w-[80%] ">
+        <div className="w-[92%] md:w-[80%] ">
           <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-5xl text-black sm:text-center lg:text-left">
             Our Range of WordPress Services
           </h1>
 
-          <div className="flex flex-wrap gap-8 mt-10 justify-center w-full">
+          <div className="flex flex-wrap gap-8 mt-10 justify-between w-full">
             {services.map((service, index) => (
               <WordService
                 key={index}
@@ -308,10 +308,10 @@ const Wordpress = () => {
 
       <section>
         <div className="p-20 ">
-          <h1 className="text-black text-center text-4xl">
+          <h1 className="text-black text-center text-xl md:text-4xl">
             Different Types of Sites We Build with WordPress
           </h1>
-          <div className=" flex flex-col md:flex-row justify-evenly mt-6 items-center">
+          <div className=" flex flex-col md:flex-row justify-evenly mt-6 items-center overflow-auto">
             {buildSites.map((site, index) => (
               <BuildSites key={index} icon={site.icon} title={site.title} />
             ))}
@@ -320,7 +320,7 @@ const Wordpress = () => {
       </section>
 
       <section className="bg-gray-100 text-black flex justify-center py-20 items-center">
-        <div className="w-[80%]">
+        <div className="w-[90%] md:w-[80%]">
           <h1 className="text-black text-4xl">
             Benefits of WordPress Website Development?
           </h1>
@@ -329,7 +329,7 @@ const Wordpress = () => {
             easily manageable website. Discover the advantages of choosing
             WordPress for your web development needs.
           </p>
-          <div className="flex flex-wrap gap-2 mt-6">
+          <div className="flex flex-wrap gap-4 mt-6">
             {wordBenefits.map((benefit, index) => (
               <WordBenefits
                 key={index}
@@ -369,7 +369,7 @@ const Wordpress = () => {
         </div>
       </section>
 
-      <Solutions />
+      {/* <Solutions /> */}
       <div className="mt-24">
         <HomeSlider />
       </div>

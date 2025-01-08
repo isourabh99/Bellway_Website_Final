@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import CNavbar from "./CNavbar";
@@ -8,11 +8,15 @@ import Solutions from "./Solutions";
 import FaqPage from "./FaqPage";
 import "./Mobile.css";
 import "./Mobile1.css";
-
+import MADScard from "./Components/MADScard";
+import { FiArrowUpRight } from "react-icons/fi";
+import { motion } from 'framer-motion'
+import Native from "./Native";
+import HomeSlider from "./HomeSlider";
 const Mobile1 = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-
   const togglePopup = () => setIsPopupVisible(!isPopupVisible);
+  const dragConstraintsdiv = useRef(null)
 
   return (
     <>
@@ -69,7 +73,7 @@ const Mobile1 = () => {
               <span class="relative invisible">Contact Us</span>
             </a>
           </div>
-          <div className="md:w-1/2 h-full mb-9 flex justify-center">
+          <div className="md:w-1/2 h-full my-10 flex justify-center">
             <img
               loading="lazy"
               src="/images/Andro-app.png"
@@ -80,19 +84,36 @@ const Mobile1 = () => {
         </div>
       </div>
 
-      {/* Section Title */}
-      <div className="se">
-        <h1 className="tag4 text-2xl mx-4 md:text-5xl font-bold">
-          Mobile App Development Services
-        </h1>
+      <div className="containerx px-4  py-10 md:py-0 flex flex-col md:flex-row justify-center bg-zinc-100  items-center  rounded overflow-hidden mb-10">
+        <div className="md:w-1/2  ">
+          <h1 className="text-zinc-900 text-3xl md:text-5xl leading-none">Mobile Application Development Services</h1>
+          <p className="text-zinc-900 text-lg mt-4">Bellway Infotech boasts a team of seasoned mobile app developers skilled in crafting feature-rich, high-performing applications for diverse platforms. To ensure your business remains at the forefront in a competitive landscape, we employ cutting-edge techniques and technologies. Our team excels in addressing even the most intricate business needs. We have successfully developed powerful apps for both iOS and Android, serving millions of users worldwide.
+          </p>
+        </div>
+        <div className="md:w-1/2 ">
+          <img src="/images/rb_5487.png" alt="" className="md:w-[80%] mx-auto" />
+        </div>
       </div>
 
-      {/* Additional Components */}
-      <div className="adjustable-container">
-        <MobileCard />
-        <Solutions />
+      <div className="flex gap-10 flex-col md:flex-row items-center w-full px-4 my-20" >
+
+        <div className="relative bg-zinc-100  md:w-80 w-full h-80 rounded-[70px] overflow-hidden">
+          <img src="/images/freepik__candid-image-photography-natural-textures-highly-r__50824.jpeg" className="w-full h-full  object-cover object-bottom" alt="" />
+          <Link to={"/contact"} className="absolute  top-0 right-10 w-fit mt-10 bg-white text-black px-2 py-2 rounded-full flex items-center justify-center gap-2 hover:scale-125 transition-all ease-linear duration-400"><FiArrowUpRight size={25} /></Link>
+        </div>
+        <MADScard desc={"As a leading mobile app development company, Bellway Infotech prioritizes seamless UI/UX   designs, dependable functionalities, and robust security measures. Partner with our expert  developers to merge creativity with technical prowess, transforming your digital visions into reality."} dragConstraintsdiv={dragConstraintsdiv} />
+        <MADScard desc={"At Bellway Infotech, our team of highly experienced Mobile App Developers specializes in bringing your business ideas to life. We create innovative, customer-focused mobile applications designed to meet your specific goals and drive success"} dragConstraintsdiv={dragConstraintsdiv}
+        />
+        <MADScard desc={"At Bellway Infotech, our skilled mobile app designers excel in prototyping and creating tailor-made mobile applications. We deliver an intuitive user interface and seamless user experience to ensure heightened engagement and a higher ROI."} dragConstraintsdiv={dragConstraintsdiv}
+        />
       </div>
 
+      <Native />
+      <MobileCard />
+      {/* <Solutions /> */}
+      <div className="mt-24">
+        <HomeSlider/>
+      </div>
       {/* FAQ Section */}
       <div className="mt-24">
         <FaqPage />

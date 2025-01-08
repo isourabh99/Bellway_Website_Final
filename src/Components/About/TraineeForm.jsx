@@ -64,7 +64,7 @@ const TraineeForm = () => {
   <div className="bg mt-20 ">
     <div className="form  ">
     <div className="form-container   pt-3 md:pt-0 pb-3 md:pb-0">
-      <h2 className='head text-2xl md:text-3xl '>Apply as a Intern</h2>
+      <h2 className='head text-2xl md:text-3xl '>Apply as a Trainee</h2>
       <div className={`bg-white/90 ${submit?"block":"hidden"} backdrop-blur-md   rounded-md md:py-2  text-black`}>
           <iframe className='  md:m-auto' src='https://lottie.host/embed/044ba384-905c-4b75-8596-54c113df19f1/pYuAhzDInA.json'></iframe>
           <h3 className='text-center  text-2xl font-semibold'>Thank You!</h3>

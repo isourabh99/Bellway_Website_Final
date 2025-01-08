@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Mobile.css'; // Assuming you have some basic styling
+import './Mobile.css'; 
 
 const data = [
     {
@@ -41,14 +41,12 @@ const MobileCard = () => {
 
 const TabHeader = ({ data, click, activeId }) => {
     return (
-        <ul className="tabs-header   ">
+        <ul className="tabs-header md:mt-20 md:mb-2 ">
             {data.map((item, index) => (
                 
                     <li key={index} className={activeId === index ? 'active' : ''}>
                     <a onClick={() => click(index)} className='  '><span className=''>{item.name}</span></a>
                 </li> 
-            
-               
             ))}
         </ul>
     );
@@ -56,10 +54,11 @@ const TabHeader = ({ data, click, activeId }) => {
 
 const TabContent = ({ data, activeId }) => {
     return (
-        <div className="tabs-content  mx-3   rounded-md h-[15rem]">
+        <div className="tabs-content  mx-3 my-4 p-4  rounded-md h-[15rem]">
             {data.map((item, index) => (
                 <div key={index} className={`tabs-textItem ${activeId === index ? 'show' : ' '}`}>
-                    <p>{item.text}</p>
+                    <p className='tracking-wider
+'>{item.text}</p>
                 </div>
             ))}
         </div>

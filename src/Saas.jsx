@@ -163,7 +163,7 @@ const Saas = () => {
             Our SaaS Development Services
           </h1>
         </div>
-        <p className="text-lg mx-4 mt-6 text-center">
+        <p className="text-lg mx-4 mt-6 md:text-center">
           Our company provides a diverse range of services beyond just SaaS
           development, catering to startups and large enterprises across the
           globe. We offer a complete range of services, from conceptualization
@@ -189,19 +189,10 @@ const Saas = () => {
           />
         </div> */}
         
-        {/* <div className="se">
-          <h1 className="tag4 text-2xl  md:text-5xl font-bold ">
-            Our Services
-          </h1>
-        </div>
-        <p className="text-lg mx-4 mt-6 text-center">
-          As a leading SaaS development company in India, Vellway Infotech is
-          dedicated to delivering comprehensive SaaS development services to
-          clients worldwide. Elevate your business beyond boundaries with our
-          innovative SaaS solutions.
-        </p> */}
+   
+     
 
-        <div className="w-[70vw] mx-auto flex flex-wrap justify-center items-center m-4">
+        <div className="md:w-[80vw] mx-auto flex flex-wrap justify-between items-center m-4">
           <SaasCard2
             title="Integration with Third Part APIs"
             description="We have a dedicated SaaS development team who has years of experience in the respective domain to develop a top-performing SaaS application for your business."
@@ -278,7 +269,7 @@ const Saas = () => {
           ))}
         </div>
 
-        <Solutions />
+        {/* <Solutions /> */}
         <div className="mt-24">
           <HomeSlider />
         </div>

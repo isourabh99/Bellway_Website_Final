@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 90vh;
+  height: 80vh;
   /* background-color: lightblue; */
 }
 .heading {
@@ -15,18 +15,18 @@
 .container-home {
   display: flex;
   justify-content: end;
-  gap: 10px;
+  /* gap: 1px; */
   width: 100%;
   height: auto;
-  max-width: 1200px;
+  max-width: 1300px;
   /* margin-bottom: 20vh; */
   padding: 15px;
   /* background-color: #fff; */
 }
 
 .container-item-home {
-  flex: 0 0 130px;
-  border-radius: 0.5rem;
+  flex: 0 0 150px;
+  /* border-radius: 0.5rem; */
   transition: 0.5s ease-in-out;
   cursor: pointer;
   box-shadow: 1px 5px 15px black;
@@ -41,16 +41,16 @@
 }
 
 .container-item-home:nth-of-type(1) {
-  background: url(./assets/AI9.jpg) no-repeat 50% / cover;
+  background: url(/images/aitech.jpg) no-repeat 0% / cover;
 }
 .container-item-home:nth-of-type(2) {
-  background: url(./assets/app10.png) no-repeat 50% / cover;
+  background: url(/images/mobileapp.jpg) no-repeat 0% /cover ;
 }
 .container-item-home:nth-of-type(3) {
   background: url(./assets/WebApp2.jpg) no-repeat 50% / cover;
 }
 .container-item-home:nth-of-type(4) {
-  background: url(./assets/ui2.jpg) no-repeat 50% / cover;
+  background: url(/images/uiux.jpg) no-repeat 0% / cover;
 }
 .container-item-home:nth-of-type(5) {
   background: url(./assets/digital2.jpg) no-repeat 50% / cover;
@@ -61,7 +61,7 @@
   color: white;
   position: absolute;
   top: 60%;
-  left: 40px;
+  left: 50px;
   transform: translateY(-50%) rotate(-90deg);
   transform-origin: left top;
   z-index: 1;
@@ -75,7 +75,7 @@
   color: #fff;
   display: flex;
   align-items: center;
-  padding: 50px 0;
+  padding: 20px 0;
   opacity: 0;
   flex-direction: column;
   height: 100%;
@@ -92,9 +92,9 @@
 }
 
 .container-item-home:hover {
-  flex: 0 0 350px;
+  flex: 0 0 500px;
   box-shadow: 1px 3px 15px black;
-  transform: translateY(-30px);
+  transform: translateY(-20px);
 }
 
 .container-item-home:hover .content {
@@ -135,10 +135,10 @@
     flex: 0 0 auto;
     width: 100%;
     margin-bottom: 10px;
-    height: 300px;
+    height: 320px;
   }
   .container-item-home .heading {
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.2rem;

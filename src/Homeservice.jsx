@@ -2,9 +2,9 @@ import React from "react";
 import "./Homeservice.css"
 function Homeservice() {
   return (
-    <div className="relative min-h-[90vh] bg-[antiquewhite] overflow-hidden  ">
+    <div className="relative min-h-[80vh] bg-[antiquewhite] overflow-hidden ">
       <div className="heading">
-        <h1 className="text-black text-center text-[8vh] lg:text-[16vh] font-bold  ">
+        <h1 className="text-black text-center text-[8vh] lg:text-[15vh] font-bold  ">
           BELLWAY
         </h1>
         <h1 className="text-black text-center text-[5vh] lg:text-[7vh] tracking-[1.5vw] ">

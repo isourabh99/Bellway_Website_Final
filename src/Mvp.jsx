@@ -93,7 +93,7 @@ const Mvp = () => {
 
         <div className="flex items-center justify-center flex-col">
           <Mvpcard />
-          <Solutions />
+          {/* <Solutions /> */}
         </div>
         <div className="mt-24">
           <HomeSlider />
