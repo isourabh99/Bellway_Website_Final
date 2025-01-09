@@ -63,7 +63,7 @@ const Career = () => {
         message: formRef.current.message.value,
         resume_link: formRef.current.resume_link.value
       }
-      console.log("formData", formData);
+      // console.log("formData", formData);
       const response = await axios.post("https://admin.bellwayinfotech.com/api/admin/open-vacancies", formData, {
         headers: {
           'Content-Type': 'application/json'

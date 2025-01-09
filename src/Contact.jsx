@@ -1,97 +1,147 @@
 import React, { useState } from "react";
-import map from "./assets/conact-page-map.jpg";
 import CNavbar from "./CNavbar";
 import Footer from "./Footer";
 import { Helmet } from "react-helmet";
-import vector from "./assets/Vector.png";
 import ReCAPTCHA from "react-google-recaptcha";
-//6Lc-ZgIqAAAAAJJnEsBoxdgWRYPsL0v2EaOvjM5D
-
+import axios from "axios";
+import Swal from "sweetalert2";
 function ContactForm() {
   //ReCAPTCHA validations
+  const [showCallForm, setShowCallForm] = useState(false);
   const [capVal, setCapVal] = useState(null);
 
-  // Handler for input change in contact number field
-  const handleContactNumberChange = (event) => {
-    const input = event.target.value;
-
-    // Validate if input is numeric and limit to 10 digits
-    if (/^\d{0,10}$/.test(input)) {
-      setContactNumber(input); // Update the state if input is valid
-    }
-    // You can add further validation or feedback if needed
-  };
-  // const [callContactNumber, setCallContactNumber] = useState('');
-  const [countryCode, setCountryCode] = useState("+1"); // Initial country code
-
-  const handleCountryCodeChange = (event) => {
-    setCountryCode(event.target.value);
-  };
-
-  const handleSubmit2 = (event) => {
-    event.preventDefault();
-    // Handle form submission here
-    console.log("Phone Number:", countryCode + callContactNumber);
-    // Reset the form fields after submission
-    setCallContactNumber("");
-    setCountryCode("+1"); // Reset to initial country code
-  };
   // State for the contact form
-  const [selectedServices, setSelectedServices] = useState([]);
-  const [FullName, setFirstName] = useState("");
-  const [City, setLastName] = useState("");
+  const [FullName, setFullName] = useState("");
+  const [City, setCity] = useState("");
   const [Email, setEmail] = useState("");
   const [ContactNumber, setContactNumber] = useState("");
-  const [Requirements, setRequirements] = useState("");
-
-  // State for the call form
-  const [callFirstName, setCallFirstName] = useState("");
-  const [callLastName, setCallLastName] = useState("");
-  const [callContactNumber, setCallContactNumber] = useState("");
-  const [callDate, setCallDate] = useState("");
-  const [callTime, setCallTime] = useState("");
-  const [callMessage, setCallMessage] = useState("");
-
-  const [showCallForm, setShowCallForm] = useState(false);
-  const handelContactsale = () => {
-    setTimeout(() => {
-      console.log("Hello, World!");
-    }, 2000);
-  };
+  const [countryCode, setCountryCode] = useState("+1");
+  const [requirements, setRequirements] = useState("");
+  const [selectedServices, setSelectedServices] = useState([]);
+  const servicesList = [
+    "Web Design & Development",
+    "UI/UX Design",
+    "Mobile App Development",
+    "Artificial Intelligence",
+    "Custom Software Development",
+    "SEO"
+  ];
   const handleCheckboxChange = (event) => {
-    const service = event.target.value;
-    if (selectedServices.includes(service)) {
-      setSelectedServices(selectedServices.filter((item) => item !== service));
-    } else {
-      setSelectedServices([...selectedServices, service]);
+    const { value, checked } = event.target;
+
+    setSelectedServices((prevSelectedServices) =>
+      checked
+        ? [...prevSelectedServices, value] // Add service if checked
+        : prevSelectedServices.filter((service) => service !== value) // Remove service if unchecked
+    );
+  };
+
+  const handelContactsale = async (e) => {
+    e.preventDefault();
+    const formData = {
+      full_name: FullName,
+      city: City,
+      email: Email,
+      phone_no: `${countryCode}${ContactNumber}`,
+      service_of_interest: selectedServices,
+      message: requirements
+    };
+
+    try {
+      const response = await axios.post("https://admin.bellwayinfotech.com/api/admin/contact", formData);
+
+      Swal.fire({
+        title: "Form Submitted Successfully!",
+        text: "Thank you for reaching out to us.",
+        icon: "success",
+        showClass: {
+          popup: "animate__animated animate__fadeInUp animate__faster"
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutDown animate__faster"
+        }
+      });
+
+      // Resetting form fields
+      setFullName("");
+      setCity("");
+      setEmail("");
+      setContactNumber("");
+      setRequirements("");
+      setSelectedServices([]);
+      setCapVal(null);
+
+    } catch (error) {
+      console.error("Failed to submit data", error?.response?.data);
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to submit the form. Please try again later.",
+        icon: "error"
+      });
+    }
+  };
+  // State for the call form
+  const [fullName, setFullNamee] = useState("")
+  const [citycall, setCityCall] = useState("")
+  const [call, setCall] = useState("")
+  const [callDate, setCallDate] = useState("")
+  const [callTime, setCallTime] = useState("")
+  const [callMessage, setCallMessage] = useState("")
+  const [capVal2, setCapVal2] = useState(null);
+  const [countryCode2, setCountryCode2] = useState("+91");
+  const handleCallSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData2 = {
+      name: fullName,
+      city: citycall,
+      phone_no: `${countryCode2}${call}`,
+      date: callDate,
+      time: callTime,
+      message: callMessage,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://admin.bellwayinfotech.com/api/admin/callrequests",
+        formData2
+      );
+      console.log("Form submitted successfully:", response.data);
+      // alert("Your request has been submitted successfully!");
+      Swal.fire({
+        title: "Form Submitted Successfully!",
+        text: "Thank you for reaching out to us.",
+        icon: "success",
+        showClass: {
+          popup: "animate__animated animate__fadeInUp animate__faster"
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutDown animate__faster"
+        }
+      });
+
+      // Optional: Clear the form after successful submission
+      setFullNamee("");
+      setCityCall("");
+      setCall("");
+      setCallDate("");
+      setCallTime("");
+      setCallMessage("");
+      setCapVal2(false);
+      setCountryCode2("+91")
+
+    } catch (error) {
+      console.error("Failed to submit data", error?.response?.data);
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to submit the form. Please try again later.",
+        icon: "error"
+      });
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", {
-      FullName,
-      City,
-      Email,
-      ContactNumber,
-      selectedServices,
-      Requirements,
-    });
-  };
 
-  const handleCallFormSubmit = (event) => {
-    event.preventDefault();
-    console.log("Call form submitted:", {
-      firstName: callFirstName,
-      lastName: callLastName,
-      contactNumber: callContactNumber,
-      callDate,
-      callTime,
-      callMessage,
-    });
-    setShowCallForm(false);
-  };
+
   return (
     <>
       <Helmet>
@@ -106,7 +156,7 @@ function ContactForm() {
 
       {/* sales */}
       <div className="md:flex flex flex-col-reverse md:flex-row  h-full mt-12 md:mt-16">
-        <div className="md:w-1/2 bg-black text-white p-10    rounded-lg shadow-md">
+        <div className="md:w-1/2 bg-black text-white p-10 rounded-lg shadow-md">
           <h1 className="md:text-5xl text-4xl font-bold md:mt-24">
             Contact our sales team
           </h1>
@@ -255,28 +305,28 @@ function ContactForm() {
             <br />
             <a
               href="/career-with-us"
-              class="relative inline-flex items-center justify-center p-2 px-6 py-1 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-red-600 rounded-full shadow-md group "
+              className="relative inline-flex items-center justify-center p-2 px-6 py-1 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-red-600 rounded-full shadow-md group "
             >
-              <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-red-600 group-hover:translate-x-0 ease">
+              <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-red-600 group-hover:translate-x-0 ease">
                 <svg
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   ></path>
                 </svg>
               </span>
-              <span class="absolute flex items-center justify-center w-full h-full text-red-600 transition-all duration-300 transform group-hover:translate-x-full ease">
+              <span className="absolute flex items-center justify-center w-full h-full text-red-600 transition-all duration-300 transform group-hover:translate-x-full ease">
                 Join Now
               </span>
-              <span class="relative invisible">Join Now</span>
+              <span className="relative invisible">Join Now</span>
             </a>
           </div>
         </div>
@@ -345,42 +395,43 @@ function ContactForm() {
           <hr />
           {!showCallForm ? (
             <form
-              action="https://api.sheetmonkey.io/form/4cLQKKRrpSS5GpPLwYzcLz"
+              action="https://admin.bellwayinfotech.com/api/admin/contact"
               method="POST"
+              onSubmit={handelContactsale}
             >
               <div className="flex flex-wrap -mx-3">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2 "
-                    htmlFor="first-name"
+                    htmlFor="full_name"
                   >
                     Full Name *
                   </label>
                   <input
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="first-name"
+                    id="full_name"
                     type="text"
                     value={FullName}
-                    onChange={(event) => setFirstName(event.target.value)}
+                    onChange={(event) => setFullName(event.target.value)}
                     required
-                    name="FullName"
+                    name="full_name"
                   />
                 </div>
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
-                    htmlFor="last-name"
+                    htmlFor="city"
                   >
                     City *
                   </label>
                   <input
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="last-name"
+                    id="city"
                     type="text"
                     value={City}
-                    onChange={(event) => setLastName(event.target.value)}
+                    onChange={(event) => setCity(event.target.value)}
                     required
-                    name="City"
+                    name="city"
                   />
                 </div>
               </div>
@@ -399,40 +450,35 @@ function ContactForm() {
                     value={Email}
                     onChange={(event) => setEmail(event.target.value)}
                     required
-                    name="Email"
+                    name="email"
                   />
                 </div>
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
-                    htmlFor="contact-number"
+                    htmlFor="phone_no"
                   >
                     Contact number *
                   </label>
                   <div
                     className="appearance-none  w-full flex  bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="contact-number"
-                    type="text" // Changed type to text for custom validation
-                    value={ContactNumber}
-                    onChange={handleContactNumberChange}
-                    maxLength={10} // Limit the maximum length of input to 10 characters
-                    required
-                    name="ContactNumber"
+
                   >
-                    <select class="w-1/4 bg-gray-200 h-full">
-                      <option>+91</option>
-                      <option>+1</option>
-                      <option>+44</option>
-                      <option>+69</option>
+                    <select className="w-1/4 bg-gray-200 h-full" onChange={(e) => setCountryCode(e.target.value)} value={countryCode}>
+                      <option value={"+91"}>+91</option>
+                      <option value={"+1"}>+1</option>
+                      <option value={"+44"}>+44</option>
+                      <option value={"+69"}>+69</option>
                     </select>
                     <input
-                      class="w-full bg-gray-200 border-0 focus:outline-none"
+                      className="w-full bg-gray-200 border-0 focus:outline-none"
                       type="number"
                       value={ContactNumber}
-                      onChange={handleContactNumberChange}
+                      onChange={(e) => setContactNumber(e.target.value)}
                       maxLength={10}
                       required
-                      name="ContactNumber"
+                      name="phone_no"
+                      id="phone_no"
                     />
                   </div>
                 </div>
@@ -454,113 +500,20 @@ function ContactForm() {
                     fontWeight: "bold",
                   }}
                 />
-                <div className="md:grid md:grid-cols-3 gap-1">
-                  <div className="md:flex my-2 md:my-0 items-center">
+                {servicesList.map((service) => (
+                  <div key={service} className="flex my-4 md:my-0 items-center">
                     <input
                       type="checkbox"
-                      value="Web Design & Development"
+                      value={service}
                       className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
                       onChange={handleCheckboxChange}
-                      name="Services-Of-Interest"
+                      checked={selectedServices.includes(service)}
                     />
-                    <span className="inline md:hidden px-2">
-                      Web Design & Development
-                    </span>
-                    <label
-                      className="md:ml-2 hidden md:flex text-gray-700 my-auto"
-                      htmlFor="web-design"
-                    >
-                      Web Design & Development
+                    <label className="md:ml-2 text-gray-700 my-auto">
+                      {service}
                     </label>
                   </div>
-                  <div className="md:flex my-2 md:my-0 items-center">
-                    <input
-                      type="checkbox"
-                      value="Graphic Design"
-                      className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
-                      onChange={handleCheckboxChange}
-                      name="Services-Of-Interest"
-                    />
-                    <span className="inline md:hidden px-2">UI/UX Design</span>
-                    <label
-                      className="md:ml-2 hidden md:flex text-gray-700 my-auto"
-                      htmlFor="graphic-design"
-                    >
-                      UI/UX Design
-                    </label>
-                  </div>
-                  <div className="md:flex my-2 md:my-0 items-center">
-                    <input
-                      type="checkbox"
-                      value="Mobile App Development"
-                      className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
-                      onChange={handleCheckboxChange}
-                      name="Services-Of-Interest"
-                    />
-                    <span className="inline md:hidden px-2">
-                      Mobile App Development
-                    </span>
-                    <label
-                      className="md:ml-2 hidden md:flex text-gray-700 my-auto"
-                      htmlFor="mobile-app-development"
-                    >
-                      Mobile App Development
-                    </label>
-                  </div>
-                  <div className="md:flex my-2 md:my-0 items-center">
-                    <input
-                      type="checkbox"
-                      value="eCommerce and CMS"
-                      className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
-                      onChange={handleCheckboxChange}
-                      name="Services-Of-Interest"
-                    />
-                    <span className="inline md:hidden px-2">
-                      Artificial Intelligence
-                    </span>
-                    <label
-                      className="md:ml-2 hidden md:flex text-gray-700 my-auto"
-                      htmlFor="ecommerce"
-                    >
-                      Artificial Intelligence
-                    </label>
-                  </div>
-                  <div className="md:flex my-2 md:my-0 items-center">
-                    <input
-                      type="checkbox"
-                      value="Custom Software Development"
-                      className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500 "
-                      onChange={handleCheckboxChange}
-                      name="Services-Of-Interest"
-                    />
-                    <span className="inline md:hidden px-2">
-                      {" "}
-                      Custom Software Development
-                    </span>
-                    <label
-                      className="md:ml-2 hidden md:flex text-gray-700 my-auto"
-                      htmlFor="custom-software"
-                    >
-                      Custom Software Development
-                    </label>
-                  </div>
-                  <div className="md:flex my-2 md:my-0 items-center">
-                    <input
-                      type="checkbox"
-                      value="SEO"
-                      className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
-                      onChange={handleCheckboxChange}
-                      name="Services-Of-Interest"
-                    />
-                    <span className="inline md:hidden px-2 ">SEO</span>
-                    <label
-                      className="md:ml-2 hidden md:flex text-gray-700 my-auto"
-                      htmlFor="seo"
-                    >
-                      SEO
-                    </label>
-                  </div>
-                </div>
+                ))}
               </div>
               <div className="text-gray-700 mt-6">
                 <h2 className="font-bold text-lg md:mr-32">
@@ -579,12 +532,11 @@ function ContactForm() {
                 <textarea
                   className="w-full mt-2 p-3 border border-gray-300 rounded-md"
                   rows="6"
-                  // value={requirements}
-                  // onChange={(event) => setRequirements(event.target.value)}
+                  value={requirements}
+                  onChange={(event) => setRequirements(event.target.value)}
                   required
-                  // minLength={250}
                   placeholder="Please share your requirements..."
-                  name="Your-Requirements"
+                  name="message"
                 />
               </div>
               <br />
@@ -601,165 +553,138 @@ function ContactForm() {
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
                   type="submit"
                   value="Submit"
-                  onClick={() => {
-                    handelContactsale();
-                  }}
                 >
                   Contact Sales
                 </button>
               </div>
             </form>
           ) : (
-            <form
-              action="https://api.sheetmonkey.io/form/fgdGfEcdRL25CCWcewUzfz"
-              method="post"
-            >
-              <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                  <label
-                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
-                    htmlFor="first-name-call"
-                  >
-                    Name *
-                  </label>
-                  <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="first-name-call"
-                    type="text"
-                    value={callFirstName}
-                    onChange={(event) => setCallFirstName(event.target.value)}
-                    required
-                    name="Name"
-                  />
-                </div>
-                <div className="w-full md:w-1/2 px-3">
-                  <label
-                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
-                    htmlFor="last-name-call"
-                  >
-                    City*
-                  </label>
-                  <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="last-name-call"
-                    type="text"
-                    value={callLastName}
-                    onChange={(event) => setCallLastName(event.target.value)}
-                    required
-                    name="City"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full px-3">
-                  <label
-                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
-                    htmlFor="contact-number-call"
-                  >
-                    Phone Number *
-                  </label>
-                  <div className="md:flex inline-flex   gap-4">
-                    {/* Country code dropdown */}
-                    <select
-                      className="bg-gray-200 w-1/4     text-gray-700 border border-gray-200 rounded-l  px-1 leading-tight h-14 focus:outline-none focus:bg-white rounded-lg
-                                                "
-                    >
-                      {" "}
-                      <option value="+91">+91 (India)</option>
-                      <option value="+01">+01 (USA)</option>
-                      <option value="+44">+44 (UK)</option>
-                      <option value="+98">+98 (Iran)</option>
-                      {/* Add more options for different country codes */}
-                    </select>
-                    {/* Phone number input */}
+              <form method="post" onSubmit={handleCallSubmit}>
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="fullname">
+                      Name *
+                    </label>
                     <input
-                      className="appearance-none md:block md:w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-r py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                      id="contact-number-call"
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      id="fullname"
                       type="text"
-                      value={callContactNumber}
-                      onChange={(event) =>
-                        setCallContactNumber(event.target.value)
-                      }
+                      value={fullName}
+                      onChange={(event) => setFullNamee(event.target.value)}
                       required
-                      name="Phone-Number"
-                      placeholder="Enter your phone number"
-                      maxLength={10}
+                      name="name"
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3">
+                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="citycall">
+                      City *
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      id="citycall"
+                      type="text"
+                      value={citycall}
+                      onChange={(event) => setCityCall(event.target.value)}
+                      required
+                      name="city"
                     />
                   </div>
                 </div>
-              </div>
 
-              <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                  <label
-                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
-                    htmlFor="call-date"
-                  >
-                    Date *
-                  </label>
-                  <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="call-date"
-                    type="date"
-                    value={callDate}
-                    onChange={(event) => setCallDate(event.target.value)}
-                    required
-                    name="Date"
-                  />
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="contact-call">
+                      Phone Number *
+                    </label>
+                    <div className="md:flex inline-flex gap-4">
+                      <select
+                        className="bg-gray-200 w-1/4 text-gray-700 border border-gray-200 rounded-l px-1 leading-tight h-14 focus:outline-none focus:bg-white rounded-lg"
+                        value={countryCode2}
+                        onChange={(event) => setCountryCode2(event.target.value)}
+                      >
+                        <option value="+91">+91 (India)</option>
+                        <option value="+1">+1 (USA)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+98">+98 (Iran)</option>
+                      </select>
+                      <input
+                        className="appearance-none md:block md:w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-r py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                        type="number"
+                        pattern="\d{10}"
+                        title="Phone number should be 10 digits"
+                        value={call}
+                        onChange={(event) => setCall(event.target.value)}
+                        maxLength={12}
+                        required
+                      />
+
+                    </div>
+                  </div>
                 </div>
-                <div className="w-full md:w-1/2 px-3">
-                  <label
-                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
-                    htmlFor="call-time"
-                  >
-                    Time *
-                  </label>
-                  <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="call-time"
-                    type="time"
-                    value={callTime}
-                    onChange={(event) => setCallTime(event.target.value)}
-                    required
-                    name="Time"
-                  />
+
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="call-date">
+                      Date *
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      id="call-date"
+                      type="date"
+                      value={callDate}
+                      onChange={(event) => setCallDate(event.target.value)}
+                      required
+                      name="date"
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3">
+                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="call-time">
+                      Time *
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      id="call-time"
+                      type="time"
+                      value={callTime}
+                      onChange={(event) => setCallTime(event.target.value)}
+                      required
+                      name="time"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full px-3">
-                  <label
-                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
-                    htmlFor="call-message"
-                  >
-                    Message *
-                  </label>
-                  <textarea
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="call-message"
-                    rows="4"
-                    value={callMessage}
-                    onChange={(event) => setCallMessage(event.target.value)}
-                    required
-                    name="Message"
-                  />
+
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="call-message">
+                      Message *
+                    </label>
+                    <textarea
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      id="call-message"
+                      rows="4"
+                      value={callMessage}
+                      onChange={(event) => setCallMessage(event.target.value)}
+                      required
+                      name="message"
+                    />
+                  </div>
                 </div>
-              </div>
-              <ReCAPTCHA
-                sitekey="6Lc-ZgIqAAAAAJJnEsBoxdgWRYPsL0v2EaOvjM5D"
-                onChange={(val) => setCapVal(val)}
-              />
-              <br />
-              <div className="flex justify-center">
-                <button
-                  disabled={!capVal}
-                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
-                  type="submit"
-                >
-                  Request a call
-                </button>
-              </div>
-            </form>
+
+                <ReCAPTCHA
+                  sitekey="6Lc-ZgIqAAAAAJJnEsBoxdgWRYPsL0v2EaOvjM5D"
+                  onChange={(val) => setCapVal(val)}
+                />
+                <br />
+                <div className="flex justify-center">
+                  <button
+                    disabled={!capVal}
+                    className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Request a call
+                  </button>
+                </div>
+              </form>
           )}
         </div>
       </div>
@@ -800,26 +725,6 @@ function ContactForm() {
           </div>
         </div>
 
-        {/* Link to Open in Google Maps */}
-        {/* <div className="mt-4">
-          <div className="bg-gradient-to-r from-red-100 to-red-200 p-6 rounded-lg shadow-lg max-w-lg mx-auto mt-8 text-center hover:scale-105 transform transition-all duration-300">
-            <h2 className="text-2xl font-bold text-red-800 mb-2">
-              Find Us Here
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Explore our office location on Google Maps. Click the button below
-              for directions!
-            </p>
-            <a
-              href="https://goo.gl/maps/X7KXj6Y7F2jLvCm89"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-red-600 text-white text-lg font-medium px-6 py-3 rounded-lg shadow-md hover:bg-red-700 hover:shadow-lg transition-colors duration-300"
-            >
-              View in Google Maps
-            </a>
-          </div>
-        </div> */}
       </div>
       <Footer />
     </>
