@@ -13,18 +13,7 @@ import Digital from "./assets/Marketing.jpg";
 import Testing from "./assets/ourprocessnew.png";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Recent from "./Recent";
-import Online from "./assets/Online.jpg";
-import Mentor from "./assets/Mentoring.jpg";
-import Client1 from "./assets/Client1.jpg";
-import Client2 from "./assets/Client2.jpg";
-import Client3 from "./assets/Client3.jpg";
-import Client4 from "./assets/Client4.jpg";
-import Client7 from "./assets/Client7.jpg";
-import Client8 from "./assets/Client8.png";
-import Client9 from "./assets/Client9.jpg";
 
-import Live from "./assets/Live.jpg";
 // import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -34,14 +23,7 @@ import Google from "./assets/Google2.jpg";
 import CNavbar from "./CNavbar";
 import Header from "./Header";
 import Footer from "./Footer";
-// import Form4 from './Form4'
-// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import About from './About';
-// import Contact from './Contact';
-// import Product from './Product';
-// import Service from './Service';
-// import CaseStudy from './CaseStudy';
-// import Blog from './Blog';
+
 import Industries from "./Industries";
 import Faq from "./HomeFaq";
 import Solutions from "./Solutions";
@@ -53,16 +35,7 @@ import sister from "./assets/sistercom2.png";
 import { Helmet } from "react-helmet";
 import { Suspense } from "react";
 
-import brobo from "./assets/Rectangle 40460.png";
-import desi from "./assets/connect.png";
-import dcart from "./assets/counter2.png";
-import grow from "./assets/grow.png";
-import LLN from "./assets/LLN2.png";
-import munch from "./assets/munch.png";
-import jyotish from "./assets/ShriJyotish.png";
-import match from "./assets/match.png";
-import haze from "./assets/haze2.png";
-import app from "./assets/app.png";
+
 import logo from "./assets/logo2.png";
 import logo2 from "./assets/logo3.png";
 import logo4 from "./assets/logo4.png";

@@ -1,4 +1,3 @@
-// src/Slider.js
 
 import React from 'react';
 import './HomeSlider.css';
@@ -20,19 +19,7 @@ import image14 from './assets/cashbackcouponslider.png';
 
 // import image14 from "./assets/"
 const images = [
-    // image1,
-    // image2,
-    // image3,
-    // image4,
-    // image5,
-    // image6,
-    // image7,
-    // image8,
-    // image9,
-    // image10,
-    // image11,
-    // image12,
-    // image13
+
 
     { src: image1, route: '/shri-jyotish' },
     { src: image2, route: '/brobo' },
@@ -40,7 +27,7 @@ const images = [
     { src: image4, route: '/oneapp-plus' },
     { src: image5, route: '/truely-match' },
     { src: image6, route: '/dcart' },
-    { src: image7, route: '/desigro' },
+    // { src: image7, route: '/desigro' },
     { src: image8, route: '/online-store-web' },
     { src: image9, route: '/coupon-counter' },
     { src: image10, route: '/goconnect' },
@@ -49,7 +36,7 @@ const images = [
     { src: image13, route: '/yml-mart' },
     { src: image14, route: '/Cashbackcoupon' }
 
-    // {src:}
+  
 
 ];
 

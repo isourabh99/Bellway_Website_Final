@@ -91,14 +91,14 @@ const CS = () => {
       logo: logo5,
       url: '/coupon-counter'
     },
-    {
-      image: grow,
-      category: 'Desi Grow',
-      title: 'Desi Grow',
-      description: 'Desi Gro simplifies buying fresh milk and dairy products online.',
-      logo: logo,
-      url: '/desigro'
-    },
+    // {
+    //   image: grow,
+    //   category: 'Desi Grow',
+    //   title: 'Desi Grow',
+    //   description: 'Desi Gro simplifies buying fresh milk and dairy products online.',
+    //   logo: logo,
+    //   url: '/desigro'
+    // },
     {
       image: LLN,
       category: 'LLN',
