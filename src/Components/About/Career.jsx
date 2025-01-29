@@ -96,24 +96,32 @@ const Career = () => {
   }
 
 
-  //   const [hirings, sethirings] = useState([])
-  //   const getHiring = async () => {
-  //     try {
-  //       const response = await fetch("https://admin.bellwayinfotech.com/api/admin/hirings")
-  //       if(!response.ok){
-  //        throw new Error("Hirings not found");
-
-  //       }
-  //       sethirings(await response.json());
-
-  //     } catch (error) {
-  //       console.log("Error fetching data",error);
-  //     }
-  //   }
-
-  // useEffect(()=>{
-  // getHiring()
-  // },[])
+  const [hirings, sethirings] = useState([])
+  const getHiring = async () => {
+    try {
+      const response = await axios.get("https://admin.bellwayinfotech.com/api/admin/hirings");
+      sethirings(response.data);
+      console.log(hirings);
+      
+    } catch (error) {
+      if (error.response) {
+        // Server responded with a status code outside the 2xx range
+        console.error(`Error: ${error.response.status} - ${error.response.data}`);
+        alert(`Error ${error.response.status}: ${error.response.data.message || "Hirings not found"}`);
+      } else if (error.request) {
+        // No response received
+        console.error("No response received:", error.request);
+        // alert("No response received from the server. Please try again later.");
+      } else {
+        // Other errors (like network issues)
+        console.error("Error setting up the request:", error.message);
+        alert(`Error: ${error.message}`);
+      }
+    }
+  };
+  useEffect(() => {
+    getHiring()
+  }, [])
   return (
     <>
       <Helmet>
@@ -194,10 +202,14 @@ const Career = () => {
           </div>{" "}
           <div className="formC bg-opacity-75 p-8 rounded-lg shadow-md w-full max-w-6xl flex flex-wrap relative z-10 text-white ">
             <div className="w-full md:w-1/2 p-4 mt-20 md:mt-60">
-              <h6 className="text-xl mt-20 mb-4">
-                Hiring for Business development executive?
-              </h6>
-              <p className="mb-6">Having 0 to 1 Years Experience !!</p>
+             {hirings.map((hiring,idx)=>(
+               <div>
+                 <h6 className="text-xl mt-20 mb-4">
+                   Hiring for {hiring.positions}
+                 </h6>
+                 <p className="mb-6">Having {hiring.experience} Years Experience !!</p>
+               </div>
+             ))}
               <div className="mt-6">
                 <h3 className="text-5xl font-semibold mt-20">
                   <i>Send Your Work Summary</i>
