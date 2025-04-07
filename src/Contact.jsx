@@ -231,7 +231,28 @@ function ContactForm() {
           <br />
           <div className="flex flex-col justify-end gap-4">
             <p className="text-lg font-normal">Call us on</p>
-            <p className="text-3xl font-bold">+91-9981866409</p>
+            <div className="">
+              <div className="flex items-center mb-2">
+                <i className="fas fa-phone mr-3 text-red-500"></i>
+                <div>
+                  <p className="text-sm text-gray-500">Sales Enquiries</p>
+                  <p className="text-sm font-medium text-gray-300">
+                    +91 9981866409
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center mb-4">
+                <i className="fas fa-phone mr-3 text-blue-500"></i>
+                <div>
+                  <p className="text-sm text-gray-500">HR Enquiries</p>
+                  <p className="text-sm font-medium text-gray-300">
+                    +91 8827211560
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <p className="text-lg font-normal">Mail us</p>
             <p className="text-base font-bold">info@bellwayinfotech.com</p>
             <p className="text-base font-bold">hr@bellwayinfotech.com</p>
@@ -460,11 +481,12 @@ function ContactForm() {
                   >
                     Contact number *
                   </label>
-                  <div
-                    className="appearance-none  w-full flex  bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-
-                  >
-                    <select className="w-1/4 bg-gray-200 h-full" onChange={(e) => setCountryCode(e.target.value)} value={countryCode}>
+                  <div className="appearance-none  w-full flex  bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white">
+                    <select
+                      className="w-1/4 bg-gray-200 h-full"
+                      onChange={(e) => setCountryCode(e.target.value)}
+                      value={countryCode}
+                    >
                       <option value={"+91"}>+91</option>
                       <option value={"+1"}>+1</option>
                       <option value={"+44"}>+44</option>
@@ -559,132 +581,149 @@ function ContactForm() {
               </div>
             </form>
           ) : (
-              <form method="post" onSubmit={handleCallSubmit}>
-                <div className="flex flex-wrap -mx-3 mb-6">
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="fullname">
-                      Name *
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                      id="fullname"
-                      type="text"
-                      value={fullName}
-                      onChange={(event) => setFullNamee(event.target.value)}
-                      required
-                      name="name"
-                    />
-                  </div>
-                  <div className="w-full md:w-1/2 px-3">
-                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="citycall">
-                      City *
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                      id="citycall"
-                      type="text"
-                      value={citycall}
-                      onChange={(event) => setCityCall(event.target.value)}
-                      required
-                      name="city"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap -mx-3 mb-6">
-                  <div className="w-full px-3">
-                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="contact-call">
-                      Phone Number *
-                    </label>
-                    <div className="md:flex inline-flex gap-4">
-                      <select
-                        className="bg-gray-200 w-1/4 text-gray-700 border border-gray-200 rounded-l px-1 leading-tight h-14 focus:outline-none focus:bg-white rounded-lg"
-                        value={countryCode2}
-                        onChange={(event) => setCountryCode2(event.target.value)}
-                      >
-                        <option value="+91">+91 (India)</option>
-                        <option value="+1">+1 (USA)</option>
-                        <option value="+44">+44 (UK)</option>
-                        <option value="+98">+98 (Iran)</option>
-                      </select>
-                      <input
-                        className="appearance-none md:block md:w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-r py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                        type="number"
-                        pattern="\d{10}"
-                        title="Phone number should be 10 digits"
-                        value={call}
-                        onChange={(event) => setCall(event.target.value)}
-                        maxLength={12}
-                        required
-                      />
-
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap -mx-3 mb-6">
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="call-date">
-                      Date *
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                      id="call-date"
-                      type="date"
-                      value={callDate}
-                      onChange={(event) => setCallDate(event.target.value)}
-                      required
-                      name="date"
-                    />
-                  </div>
-                  <div className="w-full md:w-1/2 px-3">
-                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="call-time">
-                      Time *
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                      id="call-time"
-                      type="time"
-                      value={callTime}
-                      onChange={(event) => setCallTime(event.target.value)}
-                      required
-                      name="time"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap -mx-3 mb-6">
-                  <div className="w-full px-3">
-                    <label className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2" htmlFor="call-message">
-                      Message *
-                    </label>
-                    <textarea
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                      id="call-message"
-                      rows="4"
-                      value={callMessage}
-                      onChange={(event) => setCallMessage(event.target.value)}
-                      required
-                      name="message"
-                    />
-                  </div>
-                </div>
-
-                <ReCAPTCHA
-                  sitekey="6Lc-ZgIqAAAAAJJnEsBoxdgWRYPsL0v2EaOvjM5D"
-                  onChange={(val) => setCapVal(val)}
-                />
-                <br />
-                <div className="flex justify-center">
-                  <button
-                    disabled={!capVal}
-                    className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
-                    type="submit"
+            <form method="post" onSubmit={handleCallSubmit}>
+              <div className="flex flex-wrap -mx-3 mb-6">
+                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label
+                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
+                    htmlFor="fullname"
                   >
-                    Request a call
-                  </button>
+                    Name *
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                    id="fullname"
+                    type="text"
+                    value={fullName}
+                    onChange={(event) => setFullNamee(event.target.value)}
+                    required
+                    name="name"
+                  />
                 </div>
-              </form>
+                <div className="w-full md:w-1/2 px-3">
+                  <label
+                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
+                    htmlFor="citycall"
+                  >
+                    City *
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                    id="citycall"
+                    type="text"
+                    value={citycall}
+                    onChange={(event) => setCityCall(event.target.value)}
+                    required
+                    name="city"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-wrap -mx-3 mb-6">
+                <div className="w-full px-3">
+                  <label
+                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
+                    htmlFor="contact-call"
+                  >
+                    Phone Number *
+                  </label>
+                  <div className="md:flex inline-flex gap-4">
+                    <select
+                      className="bg-gray-200 w-1/4 text-gray-700 border border-gray-200 rounded-l px-1 leading-tight h-14 focus:outline-none focus:bg-white rounded-lg"
+                      value={countryCode2}
+                      onChange={(event) => setCountryCode2(event.target.value)}
+                    >
+                      <option value="+91">+91 (India)</option>
+                      <option value="+1">+1 (USA)</option>
+                      <option value="+44">+44 (UK)</option>
+                      <option value="+98">+98 (Iran)</option>
+                    </select>
+                    <input
+                      className="appearance-none md:block md:w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-r py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      type="number"
+                      pattern="\d{10}"
+                      title="Phone number should be 10 digits"
+                      value={call}
+                      onChange={(event) => setCall(event.target.value)}
+                      maxLength={12}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap -mx-3 mb-6">
+                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label
+                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
+                    htmlFor="call-date"
+                  >
+                    Date *
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                    id="call-date"
+                    type="date"
+                    value={callDate}
+                    onChange={(event) => setCallDate(event.target.value)}
+                    required
+                    name="date"
+                  />
+                </div>
+                <div className="w-full md:w-1/2 px-3">
+                  <label
+                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
+                    htmlFor="call-time"
+                  >
+                    Time *
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                    id="call-time"
+                    type="time"
+                    value={callTime}
+                    onChange={(event) => setCallTime(event.target.value)}
+                    required
+                    name="time"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-wrap -mx-3 mb-6">
+                <div className="w-full px-3">
+                  <label
+                    className="block uppercase tracking-wide text-gray-900 text-sm font-bold mb-2"
+                    htmlFor="call-message"
+                  >
+                    Message *
+                  </label>
+                  <textarea
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                    id="call-message"
+                    rows="4"
+                    value={callMessage}
+                    onChange={(event) => setCallMessage(event.target.value)}
+                    required
+                    name="message"
+                  />
+                </div>
+              </div>
+
+              <ReCAPTCHA
+                sitekey="6Lc-ZgIqAAAAAJJnEsBoxdgWRYPsL0v2EaOvjM5D"
+                onChange={(val) => setCapVal(val)}
+              />
+              <br />
+              <div className="flex justify-center">
+                <button
+                  disabled={!capVal}
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  Request a call
+                </button>
+              </div>
+            </form>
           )}
         </div>
       </div>
@@ -724,7 +763,6 @@ function ContactForm() {
             </button>
           </div>
         </div>
-
       </div>
       <Footer />
     </>

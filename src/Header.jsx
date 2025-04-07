@@ -17,12 +17,12 @@ function Header() {
           </p>
 
           <p className="text-sm  my-6 text-left text-zinc-500 hover:text-zinc-50 transition-all duration-300">
-            At Bellway Infotech, we specialize in custom app development //
-            solutions that are designed to solve your unique business //
-            challenges. Whether you're looking to build a mobile app, web //
-            application, or enterprise-level solution, our expert // developers
-            work closely with you to create a product that // meets your exact
-            specifications and delivers a seamless user // experience.
+            At Bellway Infotech, we specialize in custom app development 
+            solutions that are designed to solve your unique business 
+            challenges. Whether you're looking to build a mobile app, web 
+            application, or enterprise-level solution, our expert  developers
+            work closely with you to create a product that  meets your exact
+            specifications and delivers a seamless user  experience.
           </p>
 
           {/* button */}

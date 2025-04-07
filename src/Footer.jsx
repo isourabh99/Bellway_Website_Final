@@ -89,6 +89,12 @@ function Footer() {
           <div className="flex flex-col col-span-1 lg:col-span-1">
             <p className="text-lg font-semibold mb-4">Services</p>
             <Link
+              to="/artificial-intelligence"
+              className="text-white hover:text-gray-400 mb-2"
+            >
+              Artificial Intelligence
+            </Link>
+            <Link
               to="/web-development"
               className="text-white hover:text-gray-400 mb-2"
             >
@@ -111,6 +117,12 @@ function Footer() {
               className="text-white hover:text-gray-400 mb-2"
             >
               Digital Marketing
+            </Link>
+            <Link
+              to="/ERP-Services"
+              className="text-white hover:text-gray-400 mb-2"
+            >
+              ERP Services
             </Link>
             <Link
               to="/mvp-development"
@@ -166,10 +178,28 @@ function Footer() {
                 <br /> Khajrana Main Road Indore 452018
               </p>
             </div>
-            <div className="flex items-start mb-4">
-              <i className="fas fa-phone mr-2"></i>
-              <p>+91-9981866409</p>
+            <div className="">
+              <div className="flex items-center mb-2">
+                <i className="fas fa-phone mr-3 text-red-500"></i>
+                <div>
+                  <p className="text-sm text-gray-500">Sales Enquiries</p>
+                  <p className="text-sm font-medium text-gray-300">
+                    +91 9981866409
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center mb-4">
+                <i className="fas fa-phone mr-3 text-blue-500"></i>
+                <div>
+                  <p className="text-sm text-gray-500">HR Enquiries</p>
+                  <p className="text-sm font-medium text-gray-300">
+                    +91 8827211560
+                  </p>
+                </div>
+              </div>
             </div>
+
             <div className="flex   items-start ">
               <div>
                 <i className="fas fa-envelope mr-2"></i>

@@ -136,13 +136,13 @@ const Home = () => {
       name: "Mohammed Wasee ",
       position: "( Founder, Brobo )",
     },
-    {
-      id: 8,
-      text: '"The Technical service is top-notch, always ready to assist with any queries. It es been a game-changer for my work Bellway Infotech came highly recommended, and they delivered beyond our expectations...."',
-      image: logo,
-      name: "Viren Patil ",
-      position: "( Founder, DesiGro )",
-    },
+    // {
+    //   id: 8,
+    //   text: '"The Technical service is top-notch, always ready to assist with any queries. It es been a game-changer for my work Bellway Infotech came highly recommended, and they delivered beyond our expectations...."',
+    //   image: logo,
+    //   name: "Viren Patil ",
+    //   position: "( Founder, DesiGro )",
+    // },
     {
       id: 9,
       text: '"The support team is fantastic and always available to help. I highly recommend this service to anyone looking to streamline their business operations and achieve greater efficiency!"',
